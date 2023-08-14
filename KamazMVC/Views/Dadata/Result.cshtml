@@ -1,0 +1,19 @@
+﻿@using Dadata.Model
+@model IList<Suggestion<Fullname>>
+
+@{
+    ViewBag.Title = "Результат";
+    var some = Model[0].data;
+}
+
+<p>@some.ToString()</p>
+
+@foreach (var i in Model)
+{
+    <p>
+       <i>@i.data.surname</i>
+       <b>@i.data.name</b>
+       <u>@i.data.patronymic</u>
+   </p>
+}
+

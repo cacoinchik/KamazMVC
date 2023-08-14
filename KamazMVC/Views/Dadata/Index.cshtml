@@ -1,0 +1,15 @@
+﻿@model HintsViewModel
+
+@{
+    ViewBag.Title = "Поиск";
+}
+
+<form method="post" asp-controller="Dadata" asp-action="Index">
+    <div asp-validation-summary="ModelOnly"></div>
+   <div>
+        <label>Name</label>
+        <input asp-for="Name"/>
+   </div>
+
+   <input type="submit"/>
+</form>
