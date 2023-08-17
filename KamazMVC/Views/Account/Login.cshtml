@@ -1,7 +1,7 @@
 ﻿@model LoginViewModel
 
 @{
-    ViewBag.Title = "Авторизация";
+    ViewBag.Title = "Вход в личный кабинет";
 }
 
 <div style="margin-left: 50px; margin-top: 50px;">
@@ -24,20 +24,21 @@
                             <input asp-for="Password" placeholder="Пароль" class="form-control"/>
                         </div>
                         <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+                    </div> <br />
 
                     <div class="form-group col-md-6">
                         <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                            </label>
-                            
+                            <input asp-for="RememberMe" />
+                            <label asp-for="RememberMe"></label>
                         </div>
-                    </div>
+                    </div> <br />
 
                     <div class="form-group col-md-6">
-                        <input type="submit" class="btn btn-primary-invert w-100" name="mode" value="Войти" />
-                        <a href="/account/register">Создать аккаунт</a>
+                        <button type="submit" class="btn btn-primary" name="mode">Войти</button>
+                    </div> 
+                    <br />
+                    <div class="form-group col-md-6">
+                        <a class="btn btn-link" href="/account/register">Создать аккаунт</a>
                     </div>
                 </form>
             </section>
