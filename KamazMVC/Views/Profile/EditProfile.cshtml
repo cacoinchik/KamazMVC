@@ -1,0 +1,27 @@
+﻿@model EditUserViewModel
+@{
+    ViewBag.Title = "Редактирование профиля";
+}
+
+<form asp-controller="Profile" asp-action="EditProfile" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname"/>
+    </div>
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name"/>
+    </div>
+
+    <div>
+        <label asp-for="Patronymic"></label>
+        <input asp-for="Patronymic"/>
+    </div>
+
+    <div>
+        <input type="submit" value="Сохранить"/>
+    </div>
+</form>

@@ -3,10 +3,11 @@
 @{
     ViewBag.Title = "Профиль";
 }
+<div style="text-align: center">
+    <h2>Добро пожаловать @Model.Name @Model.Patronymic </h2>
+</div>
 
-<h2>Добро пожаловать @Model.Name @Model.Patronymic </h2>
-
-<div>
+<div style="margin-left: 30px">
     @if (Model != null)
     {
         <dl class="row col-sm-12">
@@ -26,6 +27,10 @@
     }
 </div>
 
+<a class="btn btn-outline-info" asp-controller="Profile" asp-action="EditProfile" asp-route-id="@Model.Id">Изменить личные данные</a>
+
 <form method="post" asp-controller="Account" asp-action="Logout">
-    <input type="submit" value="Выход" />
+    <div style="text-align: center">
+        <input type="submit" value="Выход" />
+    </div>
 </form>
