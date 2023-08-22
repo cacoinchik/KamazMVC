@@ -28,6 +28,7 @@
 </div>
 
 <a class="btn btn-outline-info" asp-controller="Profile" asp-action="EditProfile" asp-route-id="@Model.Id">Изменить личные данные</a>
+<a class="btn btn-outline-info" asp-controller="Profile" asp-action="ChangePassword" asp-route-id="@Model.Id">Сменить пароль</a>
 
 <form method="post" asp-controller="Account" asp-action="Logout">
     <div style="text-align: center">

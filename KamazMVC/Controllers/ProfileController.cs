@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 
 namespace KamazMVC.Controllers
@@ -21,9 +22,9 @@ namespace KamazMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
-                return View(await _db.Users.FirstOrDefaultAsync(user=>user.UserName==User.Identity.Name));
+                return View(await _db.Users.FirstOrDefaultAsync(user => user.UserName == User.Identity.Name));
             }
             return BadRequest("Пользователь не найден, обратитесь в техническую поддержку");
         }
@@ -49,10 +50,10 @@ namespace KamazMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProfile(EditUserViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByIdAsync(model.Id);
-                if(user != null)
+                if (user != null)
                 {
                     user.Surname = model.Surname;
                     user.Name = model.Name;
@@ -60,7 +61,7 @@ namespace KamazMVC.Controllers
 
                     var result = await _userManager.UpdateAsync(user);
 
-                    if(result.Succeeded)
+                    if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Profile");
                     }
@@ -71,6 +72,55 @@ namespace KamazMVC.Controllers
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
                     }
+                }
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangePassword(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ChangePasswordViewModel model = new ChangePasswordViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+
+                    IdentityResult result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Profile");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Пользователь не найден");
                 }
             }
             return View(model);
