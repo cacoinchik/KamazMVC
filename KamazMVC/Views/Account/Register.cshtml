@@ -4,49 +4,61 @@
     ViewBag.Title = "Регистрация";
 }
 
-<h2>Регистрация</h2>
-<form method="post" asp-controller="Account" asp-action="Register">
-    <div asp-validation-summary="ModelOnly"></div>
-    <h3 class="login-cap">Регистрация на сайте KamazMVC</h3>
+<section class="vh-100 gradient">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-primary text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fx-bold mb-2 text-uppercase">Регистрация на сайте KamazMVC</h2>
 
-    <div>
-        <label asp-for="Surname"></label>
-        <input asp-for="Surname" />
-        <span asp-validation-for="Surname"></span>
-    </div> 
+                            <form method="post" asp-controller="Account" asp-action="Register">
+                                <div asp-validation-summary="ModelOnly"></div>
 
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
-        <span asp-validation-for="Name"></span>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="Surname"></label>
+                                    <input class="form-control form-control-lg" asp-for="Surname" />
+                                    <span asp-validation-for="Surname"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="Name"></label>
+                                    <input class="form-control form-control-lg" asp-for="Name" />
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="Patronymic"></label>
+                                    <input class="form-control form-control-lg" asp-for="Patronymic" />
+                                    <span asp-validation-for="Patronymic"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="UserName"></label>
+                                    <input class="form-control form-control-lg" asp-for="UserName" />
+                                    <span class="text-danger" asp-validation-for="UserName"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="Password"></label>
+                                    <input class="form-control form-control-lg" asp-for="Password" />
+                                    <span class="text-danger" asp-validation-for="Password"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="ConfirmPassword"></label>
+                                    <input class="form-control form-control-lg" asp-for="ConfirmPassword" />
+                                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                                </div>
+
+                                <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Зарегистрироваться" />
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <label asp-for="Patronymic"></label>
-        <input asp-for="Patronymic" />
-        <span asp-validation-for="Patronymic"></span>
-    </div>
-
-    <div>
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-
-    <div>
-        <input type="submit" value="Регистрация" />
-    </div>
-
-</form>
+</section>

@@ -13,16 +13,16 @@ namespace KamazMVC.ViewModels
         [Display(Name="Ваше отчество")]
         public string? Patronymic { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите ваш логин")]
         [Display(Name = "Ваш логин")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите ваш пароль")]
         [Display(Name = "Ваш пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Пожалуйста повторите ваш пароль")]
         [Display(Name = "Повторите ваш пароль")]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
