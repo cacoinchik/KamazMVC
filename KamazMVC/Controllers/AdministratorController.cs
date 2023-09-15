@@ -23,13 +23,13 @@ namespace KamazMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index() => View(await _roleManager.Roles.ToListAsync());
+        public async Task<IActionResult> Index() => View(await _userManager.Users.ToListAsync());
+
+        [HttpGet]
+        public async Task<IActionResult> RolesList() => View(await _roleManager.Roles.ToListAsync());
 
         [HttpGet]
         public IActionResult Create() => View();
-
-        [HttpGet]
-        public async Task<IActionResult> UserList() => View(await _userManager.Users.ToListAsync());
 
         [HttpPost]
         public async Task<IActionResult> Create(string name)
@@ -39,7 +39,7 @@ namespace KamazMVC.Controllers
                 IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Administrator");
+                    return RedirectToAction("RolesList", "Administrator");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace KamazMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> EditRole(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
@@ -84,7 +84,7 @@ namespace KamazMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(string id, List<string> roles)
+        public async Task<IActionResult> EditRole(string id, List<string> roles)
         {
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
@@ -101,6 +101,55 @@ namespace KamazMVC.Controllers
                 return RedirectToAction("Index", "Administrator");
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            AdminUserEditViewModel model = new AdminUserEditViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Surname = user.Surname,
+                Name = user.Name,
+                Patronymic = user.Patronymic
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(AdminUserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.UserName = model.UserName;
+                    user.Surname = model.Surname;
+                    user.Name= model.Name;
+                    user.Patronymic = model.Patronymic;
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if(result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Administrator");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+            }
+            return View(model);
         }
 
     }
