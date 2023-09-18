@@ -117,7 +117,8 @@ namespace KamazMVC.Controllers
                 UserName = user.UserName,
                 Surname = user.Surname,
                 Name = user.Name,
-                Patronymic = user.Patronymic
+                Patronymic = user.Patronymic,
+                Email = user.Email
             };
             return View(model);
         }
@@ -134,6 +135,7 @@ namespace KamazMVC.Controllers
                     user.Surname = model.Surname;
                     user.Name= model.Name;
                     user.Patronymic = model.Patronymic;
+                    user.Email = model.Email;
 
                     var result = await _userManager.UpdateAsync(user);
                     if(result.Succeeded)

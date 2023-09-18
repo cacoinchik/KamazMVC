@@ -6,21 +6,21 @@ namespace KamazMVC.ViewModels
     {
         public string Id { get; set; }
 
-        [Required]
         [Display(Name = "Логин пользователя")]
         public string UserName { get; set; }
 
-        [Required]
         [Display(Name = "Фамилия пользователя")]
         public string? Surname { get; set; }
 
-        [Required]
         [Display(Name = "Имя пользователя")]
         public string? Name { get; set; }
 
-        [Required]
         [Display(Name = "Отчество пользователя")]
         public string? Patronymic { get; set; }
+
+        [Display(Name = "Почта пользователя")]
+        [DataType(DataType.EmailAddress)]
+        public string? Email { get; set; }
 
     }
 }
