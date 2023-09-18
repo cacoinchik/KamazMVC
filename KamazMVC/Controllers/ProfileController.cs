@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Client;
 
 namespace KamazMVC.Controllers
 {
@@ -43,8 +41,7 @@ namespace KamazMVC.Controllers
                 Surname = user.Surname,
                 Name = user.Name,
                 Patronymic = user.Patronymic,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber
+                Email = user.Email
             };
             return View(model);
         }
@@ -61,7 +58,6 @@ namespace KamazMVC.Controllers
                     user.Name = model.Name;
                     user.Patronymic = model.Patronymic;
                     user.Email = model.Email;
-                    user.PhoneNumber = model.PhoneNumber;
 
                     var result = await _userManager.UpdateAsync(user);
 

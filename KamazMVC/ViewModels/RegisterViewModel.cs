@@ -21,10 +21,6 @@ namespace KamazMVC.ViewModels
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
 
-        [Display(Name = "Ваш номер телефона")]
-        [DataType(DataType.PhoneNumber)]
-        public string? PhoneNumber { get; set; }
-
         [Required(ErrorMessage = "Введите ваш пароль")]
         [Display(Name = "Ваш пароль")]
         [DataType(DataType.Password)]

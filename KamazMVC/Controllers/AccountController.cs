@@ -40,8 +40,7 @@ namespace KamazMVC.Controllers
                         Name = model.Name,
                         Patronymic=model.Patronymic,
                         UserName = model.UserName,
-                        Email = model.Email,
-                        PhoneNumber = model.PhoneNumber
+                        Email = model.Email
                     };
 
                     var result = await _userManager.CreateAsync(user, model.Password);
