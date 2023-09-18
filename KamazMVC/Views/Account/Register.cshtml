@@ -41,6 +41,18 @@
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="Email"></label>
+                                    <input class="form-control form-control-lg" asp-for="Email" />
+                                    <span class="text-danger" asp-validation-for="Email"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label" asp-for="PhoneNumber"></label>
+                                    <input class="form-control form-control-lg" asp-for="PhoneNumber" />
+                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
                                     <label class="form-label" asp-for="Password"></label>
                                     <input class="form-control form-control-lg" asp-for="Password" />
                                     <span class="text-danger" asp-validation-for="Password"></span>

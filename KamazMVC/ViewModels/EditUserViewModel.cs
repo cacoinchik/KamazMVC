@@ -14,5 +14,11 @@ namespace KamazMVC.ViewModels
 
         [Display(Name = "Ваше отчество")]
         public string? Patronymic { get; set; }
+
+        [Display(Name = "Ваша почта")]
+        public string? Email { get; set; }
+
+        [Display(Name = "Ваш номер телефона")]
+        public string? PhoneNumber { get; set; }
     }
 }

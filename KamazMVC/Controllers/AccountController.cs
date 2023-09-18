@@ -39,7 +39,9 @@ namespace KamazMVC.Controllers
                         Surname=model.Surname,
                         Name = model.Name,
                         Patronymic=model.Patronymic,
-                        UserName = model.UserName
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber
                     };
 
                     var result = await _userManager.CreateAsync(user, model.Password);
@@ -48,7 +50,7 @@ namespace KamazMVC.Controllers
                     {
                         _logger.LogInformation($"{model.UserName} created new account");
                         await _signInManager.SignInAsync(user, false);
-                        return RedirectToAction("Index", "Home"); //=>Index Profile
+                        return RedirectToAction("Index", "Profile");
                     }
                     else
                     {
